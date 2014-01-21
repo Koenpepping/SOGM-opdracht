@@ -9,8 +9,12 @@ using namespace std;
 
 int main()
 {
+double amplitude=0.5;
+double frequency=880;
+double samplerate=48000;
+
 	for(int x=0; x<3; ++x) {
-			cout << x << " > " << sin(x*M_PI) <<endl;
+	cout << x << " > " << amplitude*sin(x*M_PI) <<endl;
 	}
 return 0;
 }
