@@ -1,0 +1,62 @@
+Opdracht/oefeningen met inheritance in C++.
+
+Uitgangspunt: een gitaar-effect. De base class is Amplifier. Zonder afgeleide
+classes is het gewoon een versterker. In de afgeleide classes kun je effecten
+programmeren.
+
+Voorwaarden voor het eindresultaat:
+- Geef elke class zijn eigen .h en .cpp files
+- Zet de main functie in een eigen file
+- Werk eventuele getallen zo veel mogelijk uit de .cpp files naar .h files
+  toe, of als ze maar voor één file bedoeld zijn, zet ze dan bovenin. 
+- Kies duidelijke (verklarende) namen voor functies en variabelen 
+- Zet commentaar op plaatsen waar dat nodig is, zoals bij elke class een
+  korte beschrijving wat deze doet en bij elke functie waarvan niet
+  meteen duidelijk is wat die doet.
+- Zorg dat de executable aangeroepen kan worden met argumenten om het type
+  effect aan te geven en eventuele instellingen. Voorbeelden:
+  guitarfx -a 0.5 (een amplifier met versterking 0.5)
+  guitarfx -t -d 0.5 -f 20 (tremolo met depth 0.5 en freq 20 Hz)
+    of
+  guitarfx --tremolo --depth 0.5 --frequency 20
+- Maak zelf minimaal twee effecten zoals Tremolo, Flanger, Fuzz, Echo, Delay...
+- Maak een Makefile om alles te bouwen. En compileer vaak!
+- Houd tussenstappen bij in Git
+
+
+=== Tips ===
+
+Zet bij elke cout als eerste de naam van de class zodat je de output van je
+programma kunt relateren aan de code:
+  cout << "Amplifier level: " <<...
+  cout << "Tremolo mod_depth: " <<...
+
+Ik raad je ook aan om voor elke functie-aanroep een cout te zetten die
+laat zien wat er gedaan wordt.
+
+- begin met het werkend maken van de basis van de amplifier zodat deze
+  (zogenaamd) samples leest, bewerkt en schrijft en waarbij je de
+  versterking kunt instellen. Verander het default level naar 0.5 en kijk
+  wat er gebeurt.
+
+- Maak een class Tremolo die afgeleid is van Amplifier. Denk na wat een
+  Tremolo anders maakt dan een Amplifier, ofwel: welke eigenschappen moet
+  je toevoegen en welke eigenschappen van Amplifier kun je in Tremolo
+  gebruiken?
+
+- roep in main() de show_level() functie van de tremolo aan, compileer en
+  kijk wat het resultaat is
+
+- gebruik read_samples(), process_samples() en write_samples() van amplifier
+
+- gebruik read_samples(), process_samples() en write_samples() van tremolo
+
+- tremolo moet nu zijn eigen versie van process_samples krijgen.
+
+  Nu loop je tegen een probleem aan: inputbuffer en outputbuffer zijn
+  private in de base class. Welke oplossingen kun je hiervoor bedenken?
+
+  Experimenteer zelf wat en probeer inzicht te krijgen in welke functie
+  aangeroepen wordt onder welke omstandigheden: een base-class functie of
+  een derived-class functie.
+

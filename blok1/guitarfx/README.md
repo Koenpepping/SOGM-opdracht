@@ -1,0 +1,4 @@
+guitarfx
+========
+
+C++ inheritance assignment
