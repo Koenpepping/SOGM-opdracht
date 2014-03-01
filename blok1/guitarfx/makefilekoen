@@ -1,7 +1,0 @@
-all: guitarfx amplifier
-
-guitarfx: guitarfx.cpp 
-
-amplifier: amplifier.cpp amplifier.h
-
-
