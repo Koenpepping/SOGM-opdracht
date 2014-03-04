@@ -9,11 +9,14 @@ class Bitcrusher : public Amplifier
 {
 public:
     Bitcrusher();
-		void set_resolution();
     void show_params();
     void process_samples();
+		void set_resolution();
+//	void set_reduction
 		
 private:
+		int resolution;
+//	int reduction
 
 };
 

@@ -32,8 +32,8 @@ void Amplifier::process_samples() // vermenigvuldigd alle input getallen
 {
     for (int i = 0; i < buffersize; i++)
     {
-        buffer[i] *= level;
-    }
+	     buffer[i] *= level;
+	  }
 
 }
 

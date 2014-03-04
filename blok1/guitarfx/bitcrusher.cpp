@@ -8,29 +8,46 @@ Bitcrusher::Bitcrusher() : Amplifier()
 {		
 		resolution = 12; // nieuwe bitdepth
 	  Amplifier::Amplifier();
+//	reduction
 }
 
 
 
-void Bitcrusher::set_downsample(int d)
+void Bitcrusher::set_resolution(int r)
 {
-	downsample = d;
+	resolution = r;
 }
 
-void Tremolo::show_params()
+void Bitcrusher::show_params()
 {
 	cout << "resolutie: " << resolution << endl;
-  cout << "downsample: " << downsample << endl;
-  cout << "roof: " << roof << endl;
-
 }
 
 
-void Tremolo::process_samples()
+void Bitcrusher::process_samples()
 {
+	int downdepth = pow(2.0, resolution) - 1.0;
+//int reductedsample = samplerate / reduction;
+
 	for(int i = 0; i < buffersize; i++)
 		{
-			//round i op een precision van (1 / (pow (2, (resolution - 1))))
-		round	(buffer[i] *= 0.5 + 0.5) * (pow (2, (resolution - 1)))
+			//depth
+			(buffer[i] += 1.0) *= downdepth ;	
+
+			round (buffer[i]);
+
+			(buffer[i] /= downdepth) -= 1.0;
+
+			/*reduct
+
+			if (reduction > 1) {
+				for(int x = 0; x < reductedsample && x < buffersize; x++)
+				{
+					
+				}
+
+			*/
+
+			buffer[i] *= level;
 		} 
 }

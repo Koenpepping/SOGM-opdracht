@@ -7,7 +7,7 @@ using namespace std;
 Tremolo::Tremolo() : Amplifier()
 {
     rate = 3675;
-    depth = 1.0;
+    depth = 0.5;
 	  Amplifier::Amplifier();
 		phase = 0.0;
 }
@@ -33,7 +33,7 @@ void Tremolo::process_samples()
 {
 	 for (int i = 0; i < buffersize; i++)
     {
-      buffer[i] *= (sin(2*M_PI (* (float)i / SAMPLERATE * rate + phase) * ) + 1) / 2 * depth + 1 - depth;
+      buffer[i] *= (sin(2*M_PI * (float)i / SAMPLERATE)) * ((rate + phase) *  + 1) / 2 * depth + 1 - depth;
   	}
 
 		phase += (float)buffersize / SAMPLERATE * rate;

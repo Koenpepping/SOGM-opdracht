@@ -32,10 +32,14 @@
 #include "audio_io.h"
 #include "amplifier.h"
 #include "tremolo.h"
+#include "bitcrusher.h"
 
 using namespace std;
 
 #define MODE 1
+#define SAMPLERATE 44100
+#define NOC	1
+#define FPB 256
 
 int main()
 {
@@ -43,9 +47,9 @@ int main()
 	Audio_IO audiostream;
 
 	audiostream.set_mode(AUDIO_IO_READWRITE);
-  audiostream.set_samplerate(44100); // constante aanmaken
-  audiostream.set_nrofchannels(1);	// constante aanmaken
-  audiostream.set_framesperbuffer(256); // constante aanmaken
+  audiostream.set_samplerate(SAMPLERATE); // constante aanmaken
+  audiostream.set_nrofchannels(NOC);	// constante aanmaken
+  audiostream.set_framesperbuffer(FPB); // constante aanmaken
 
   audiostream.initialise();
   audiostream.list_devices();
@@ -61,7 +65,6 @@ int main()
 
   audiostream.start_server();
 
-		
 		Amplifier* amp;
 		
 		switch(MODE)
@@ -69,6 +72,7 @@ int main()
 			default: amp = new Amplifier();
 			case 0: amp = new Amplifier();
 			case 1: amp = new Tremolo();
+			case 2: amp = new Bitcrusher();
 		}
 
 		while(true)
