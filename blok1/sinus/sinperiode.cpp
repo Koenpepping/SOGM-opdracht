@@ -12,9 +12,9 @@ int length = (SR / F);
 
 int main()
 {
-	for(int i = 0; i <= length; i++)
+	for(int x = 0; x <= length; x++)
 	{
-		double y = sin(i*2*M_PI*F/SR + phase);
-		cout << i << " " << y << endl;
+		double y = sin(x*2*M_PI*F/SR + phase);
+		cout << x << "   " << y << endl;
 	}
 }
