@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
+#include <iomanip>
 
 using namespace std;
 
@@ -29,10 +30,13 @@ int main()
 {	
   srand (time(NULL)); //initialize srand
 
-Synth synth1;
+Synth synth1; //eerste synth sequence
 	synth1.setNumberofOctaves(3);
 	synth1.output(lengthOfSequence);
 
+Synth synth2; //tweede synth sequence
+	synth2.setNumberofOctaves(1);
+	synth2.output(lengthOfSequence);
 }
 
 //instruments class:
@@ -59,9 +63,9 @@ int Instruments::output(int length) //print array
 	for(int i=0; i<=length-1; i++)
 	{
 		Instruments synth1;
-			cout <<	synth1.makeSequence(lengthOfSequence, numberOFOctaves , i) <<endl;
+			cout << setfill(' ') << setw(2) <<	synth1.makeSequence(lengthOfSequence, numberOFOctaves , i) << " ";
 	}
-
+cout << endl;
 return 0;
 }
 
@@ -71,6 +75,7 @@ Synth::Synth()
 {
 
 }
+
 
 void Synth::setNumberofOctaves(int numOctaves) // set number of octaves
 {
