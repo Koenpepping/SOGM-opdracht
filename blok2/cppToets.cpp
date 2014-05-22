@@ -5,8 +5,12 @@
 using namespace std;
 
 #define lengthOfSequence 8
+#define defaultTransNum 0
 
+int transposeNum = 0;
 int numberOFOctaves = 1;
+
+// toonladder is acht noten 0 is grondtoon 8 is octaaf.
 
 
 //base class
@@ -23,7 +27,9 @@ class Synth : public Instruments
 {
 	public:
 	Synth();
-	void setNumberofOctaves(int numOctaves);	 
+	void setNumberofOctaves(int numOctaves);	
+	void transpose(int plus);
+	void noTranspose();
 };
 
 int main()
@@ -31,12 +37,20 @@ int main()
   srand (time(NULL)); //initialize srand
 
 Synth synth1; //eerste synth sequence
+	synth1.noTranspose();
 	synth1.setNumberofOctaves(3);
 	synth1.output(lengthOfSequence);
 
 Synth synth2; //tweede synth sequence
+	synth2.transpose(3);
 	synth2.setNumberofOctaves(1);
 	synth2.output(lengthOfSequence);
+
+Synth synth3; //derde synth sequence
+	synth3.noTranspose();
+	synth3.setNumberofOctaves(1);
+	synth3.output(lengthOfSequence);
+
 }
 
 //instruments class:
@@ -52,7 +66,7 @@ int Instruments::makeSequence(int length, int numOfOctaves, int index) //vul arr
 
 	for(int i=0; i<=length-1; i++)
 	{
-	notes[i] = rand() % ((numOfOctaves * 8) + 1);	
+	notes[i] = ((rand() % ((numOfOctaves * 8) + 1)) + transposeNum);	
 	}
 
 return notes[index];
@@ -80,5 +94,15 @@ Synth::Synth()
 void Synth::setNumberofOctaves(int numOctaves) // set number of octaves
 {
  numberOFOctaves = numOctaves;
+}
+
+void Synth::transpose(int plus) //transposed de sequence met interval plus
+{
+	transposeNum = plus;
+}
+
+void Synth::noTranspose() //geen transpose aangeroepen
+{
+	transposeNum = defaultTransNum;
 }
 
