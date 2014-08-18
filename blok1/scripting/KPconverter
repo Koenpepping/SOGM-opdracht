@@ -1,0 +1,148 @@
+#! /bin/bash
+
+CUR=`pwd`
+CURDIRWF="LET OP! weet u zeker dat u ALLE .wav bestanden IN DE MAP  `basename $CUR` wilt converten naar .flac bestanden."
+CURDIRAF="LET OP! weet u zeker dat u ALLE .aiff bestanden IN DE MAP `basename $CUR` wilt converten naar .flac bestanden."
+CURDIRWM="LET OP! weet u zeker dat u ALLE .wav bestanden IN DE MAP  `basename $CUR` wilt converten naar .mp3 bestanden."
+CURDIRAM="LET OP! weet u zeker dat u ALLE .aiff bestanden IN DE MAP `basename $CUR` wilt converten naar .mp3 bestanden."
+
+echo "Welkom bij KPconverter! typ: einde :, om KPconverter te verlaten. Om deze converter te gebruiken dient u naar de map te gaan waar uw bestanden staan die u wilt converten. Ga nu verder met de volgende stap: voer een input extensie in: kies uit .wav of .aiff"
+
+while read input; do
+case $input in
+.wav)
+echo "input is $input kies output extensie. kies uit .flac of .mp3"
+	while read output; do	
+		case $output in
+		.flac)
+			echo "$CURDIRWF"
+				while read yn; do
+					case $yn in
+					y|Y|yes|Yes|ja|Ja)
+						for file in *.wav;
+						do flac "$file";
+
+						echo "$file"
+						done
+						echo "klaar"
+						exit
+					;;
+					n|N|no|No|nee|Nee)
+						exit
+					;;
+					einde)
+						exit
+					;;
+					*)
+						echo "y of n"
+					;;
+					esac
+				done	
+		;;
+		.mp3)
+			echo "$CURDIRWM"
+				while read yn; do
+					case $yn in
+					y|Y|yes|Yes|ja|Ja)
+						for file in *.wav;
+						do lame "$file";
+
+						echo "$file"
+						done
+						echo "klaar"
+						exit
+					;;
+					n|N|no|No|nee|Nee)
+						exit
+					;;
+					einde)
+						exit
+					;;
+					*)
+						echo "y of n"
+					;;
+					esac
+				done	
+		;;
+		einde)
+		exit
+		;;
+		*)
+		echo "Kies a.u.b. een geldige output extensie (.flac of .mp3)"
+		;;
+		esac
+	done
+;;
+.aiff)
+echo "input is $input kies output extensie. kies uit .flac of .mp3"
+	while read output; do	
+		case $output in
+		.flac)
+			echo "$CURDIRAF"
+				while read yn; do
+					case $yn in
+					y|Y|yes|Yes|ja|Ja)
+						for file in *.aif;
+						do flac "$file";
+
+						echo "$file"
+						done
+						echo "klaar"
+						exit
+					;;
+					n|N|no|No|nee|Nee)
+						exit
+					;;
+					einde)
+						exit
+					;;
+					*)
+						echo "y of n"
+					;;
+					esac
+				done	
+
+		;;
+		.mp3)
+			echo "$CURDIRAM"
+				while read yn; do
+					case $yn in
+					y|Y|yes|Yes|ja|Ja)
+						for file in *.aif;
+						do lame "$file";
+
+						echo "$file"
+						done
+						echo "klaar"
+						exit
+					;;
+					n|N|no|No|nee|Nee)
+						exit
+					;;
+					einde)
+						exit
+					;;
+					*)
+						echo "y of n"
+					;;
+					esac
+				done	
+
+		;;
+		einde)
+		exit
+		;;
+		*)
+		echo "Kies a.u.b. een geldige output extensie (.flac of .mp3)"
+		;;
+		esac
+	done
+;;
+einde)
+exit
+;;
+*)
+echo "Kies a.u.b. een geldige input extensie (.wav of .aiff)"
+;;
+esac
+done

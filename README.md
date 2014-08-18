@@ -1,0 +1,4 @@
+SOGM-opdracht
+=============
+
+School assignment
